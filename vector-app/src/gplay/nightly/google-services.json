@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "414144451373",
+    "project_id": "teleiraq-app",
+    "storage_bucket": "teleiraq-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414144451373:android:34180b99493f697a41f9a4",
+        "android_client_info": {
+          "package_name": "iq.teleiraq.app.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1qqOFdpTbIQUlH3QKPuMIfFBTNqHg3vc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    } ,  {
+      "client_info": {
+        "mobilesdk_app_id": "1:414144451373:android:34180b99493f697a41f9a4",
+        "android_client_info": {
+          "package_name": "iq.teleiraq.app.android.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1qqOFdpTbIQUlH3QKPuMIfFBTNqHg3vc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
