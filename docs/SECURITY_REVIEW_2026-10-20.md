@@ -40,10 +40,14 @@ properties taking precedence. The conventional shared Android debug key remains
 tracked for development only. Fresh clones need private signing configuration
 before producing signed releases; no production credentials are provided in Git.
 
-Remote `main` was confirmed to point to the reviewed commit. Two remote Dependabot
-branches also exist. The cleanup commit does not remove the previous copies from
-their history. No keys have been rotated, no history rewritten, and no Play
-Console settings changed.
+On 2026-10-20, the user authorized rewriting history. All three remote branches
+(`main` and two Dependabot branches) were rewritten and force-pushed with explicit
+leases. Verification covered 9 rewritten commits and 6,494 blobs, finding no
+removed signing files or release password values. The local checkout was aligned
+with rewritten `main`; all four private local signing files were preserved
+byte-for-byte. No keys have been rotated and no Play Console settings changed.
+GitHub-managed PR refs/cached views and other clones can still retain old history.
+See `HISTORY_CLEANUP.md` for the remaining GitHub Support and collaborator steps.
 
 Reference: https://support.google.com/googleplay/android-developer/answer/9842756
 

@@ -9,6 +9,10 @@ checkout, create that ignored file with these property names and your private
 values:
 
 ```properties
+signing.element.storePath=/absolute/path/to/private-upload.keystore
+signing.element.storePassword=YOUR_LOCAL_VALUE
+signing.element.keyId=YOUR_LOCAL_ALIAS
+signing.element.keyPassword=YOUR_LOCAL_VALUE
 ```
 
 Use forward slashes for Windows paths. Relative store paths resolve from the
