@@ -1,1 +1,1 @@
-Previous generation Element
+Matrix messaging with private chats, groups, and voice and video calls.

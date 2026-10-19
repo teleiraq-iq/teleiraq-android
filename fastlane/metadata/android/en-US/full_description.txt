@@ -1,1 +1,7 @@
-Element Classic is the previous-generation of Element mobile app. Friends, family and communities should use the free and open source Element X app which is faster, easier to use, and more powerful. New users of public sector organisations, enterprises and professional teams users should use the Element Pro app that is built for work and organisations. Element Classic is available at least until the end of 2025 and will receive critical security updates but no further enhancements or new features.
+TELEIRAQ is a Matrix messaging app for direct messages, group conversations, and voice and video calls. It connects to the TELEIRAQ homeserver and supports end-to-end encryption in encrypted rooms.
+
+TELEIRAQ is an independent modified version of Element Classic Android, not an official Element release or endorsed by Element.
+
+Free software under the GNU Affero General Public License, version 3 or later, subject to retained file-level and third-party notices. Copyright (c) 2018 - 2025 New Vector Ltd and other contributors. Provided without warranty.
+
+Source code and release information: https://github.com/moahmmadjaber/teleiraq-android

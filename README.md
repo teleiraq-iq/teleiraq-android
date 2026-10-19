@@ -43,3 +43,8 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 The upstream Element project also offers its code under a separate [Element Commercial License](./LICENSE-COMMERCIAL). That option does not automatically cover modifications made in this fork.
+
+Fork source: [TELEIRAQ Android](https://github.com/moahmmadjaber/teleiraq-android).
+See the dated [modification notice](./FORK_CHANGES.md) and
+[release compliance review](./docs/FORK_COMPLIANCE.md), including source publication,
+remaining branding work and the upstream README/file-header licensing discrepancy.

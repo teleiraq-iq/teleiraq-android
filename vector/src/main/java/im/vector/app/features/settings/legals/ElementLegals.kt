@@ -7,10 +7,10 @@
 
 package im.vector.app.features.settings.legals
 
+import im.vector.app.R
 import im.vector.app.core.resources.StringProvider
 import im.vector.app.features.discovery.ServerPolicy
 import im.vector.app.features.settings.VectorSettingsUrls
-import im.vector.lib.strings.CommonStrings
 import javax.inject.Inject
 
 class ElementLegals @Inject constructor(
@@ -21,9 +21,9 @@ class ElementLegals @Inject constructor(
      */
     fun getData(): List<ServerPolicy> {
         return listOf(
-                ServerPolicy(stringProvider.getString(CommonStrings.settings_copyright), VectorSettingsUrls.COPYRIGHT),
-                ServerPolicy(stringProvider.getString(CommonStrings.settings_acceptable_use_policy), VectorSettingsUrls.ACCEPTABLE_USE_POLICY),
-                ServerPolicy(stringProvider.getString(CommonStrings.settings_privacy_policy), VectorSettingsUrls.PRIVACY_POLICY)
+                // Modified for TELEIRAQ on 2026-10-19. Element's service policies do not describe this fork.
+                ServerPolicy(stringProvider.getString(R.string.teleiraq_copyright_license), VectorSettingsUrls.COPYRIGHT),
+                ServerPolicy(stringProvider.getString(R.string.teleiraq_source_code), VectorSettingsUrls.SOURCE_CODE)
         )
     }
 }

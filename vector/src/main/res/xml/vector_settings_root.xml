@@ -44,4 +44,12 @@
         app:fragment="im.vector.app.features.settings.VectorSettingsAdvancedSettingsFragment"
         app:isPreferenceVisible="@bool/settings_root_advanced_visible" />
 
+    <!-- TELEIRAQ modification, 2026-10-19: dedicated legal page, always accessible. -->
+    <im.vector.app.core.preference.VectorPreference
+        android:key="TELEIRAQ_LEGAL_PREFERENCE_KEY"
+        android:icon="@drawable/ic_settings_root_legals"
+        android:title="@string/preference_root_legals"
+        android:summary="@string/teleiraq_legal_summary"
+        app:fragment="im.vector.app.features.settings.legals.LegalsFragment" />
+
 </androidx.preference.PreferenceScreen>
