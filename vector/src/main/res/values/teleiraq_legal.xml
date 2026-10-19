@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TELEIRAQ modification, 2026-10-19. SPDX-License-Identifier: AGPL-3.0-or-later -->
+<resources>
+    <string name="teleiraq_legal_summary">Copyright, software licenses, source code and service policies</string>
+    <string name="teleiraq_copyright_license">Copyright and software license</string>
+    <string name="teleiraq_source_code">TELEIRAQ source code</string>
+</resources>
