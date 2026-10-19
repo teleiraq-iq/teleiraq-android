@@ -16,11 +16,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionManager
 import dagger.hilt.android.AndroidEntryPoint
+import im.vector.app.config.Config
 import im.vector.app.core.extensions.cleanup
 import im.vector.app.core.extensions.registerStartForActivityResult
 import im.vector.app.core.platform.VectorBaseFragment
@@ -64,6 +66,7 @@ class VectorSettingsNotificationsTroubleshootFragment :
         val dividerItemDecoration = DividerItemDecoration(view.context, layoutManager.orientation)
         views.troubleshootTestRecyclerView.addItemDecoration(dividerItemDecoration)
 
+        views.troubleshootSummButton.isVisible = Config.ENABLE_BUG_REPORT
         views.troubleshootSummButton.debouncedClicks {
             bugReporter.openBugReportScreen(requireActivity())
         }

@@ -8,6 +8,7 @@
 package im.vector.app
 
 import android.content.SharedPreferences
+import im.vector.app.config.Config
 import im.vector.app.core.di.ActiveSessionHolder
 import im.vector.app.features.rageshake.BugReporter
 import im.vector.app.features.rageshake.ReportType
@@ -59,7 +60,7 @@ class AutoRageShaker @Inject constructor(
     private var preferenceEnabled = false
     fun initialize() {
         observeActiveSession()
-        preferenceEnabled = vectorPreferences.labsAutoReportUISI()
+        preferenceEnabled = Config.ENABLE_BUG_REPORT && vectorPreferences.labsAutoReportUISI()
         // It's a singleton...
         vectorPreferences.subscribeToChanges(this)
 
@@ -87,7 +88,7 @@ class AutoRageShaker @Inject constructor(
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        preferenceEnabled = vectorPreferences.labsAutoReportUISI()
+        preferenceEnabled = Config.ENABLE_BUG_REPORT && vectorPreferences.labsAutoReportUISI()
     }
 
     private fun observeActiveSession() {

@@ -1,5 +1,7 @@
 import com.android.build.OutputFile
 
+def isBuildingAppBundle = gradle.startParameter.taskNames.any { it.tokenize(':').last().startsWith('bundle') }
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
@@ -37,7 +39,7 @@ ext.versionMinor = 3
 // Note: even values are reserved for regular release, odd values for hotfix release.
 // When creating a hotfix, you should decrease the value, since the current value
 // is the value for the next regular release.
-ext.versionPatch = 91
+ext.versionPatch = 94
 
 static def getGitTimestamp() {
     def cmd = 'git show -s --format=%ct'
@@ -135,13 +137,13 @@ android {
     namespace "iq.teleiraq.app.android"
     // Due to a bug introduced in Android gradle plugin 3.6.0, we have to specify the ndk version to use
     // Ref: https://issuetracker.google.com/issues/144111441
-    ndkVersion "27.1.12297006"
+    ndkVersion "28.2.13676358"
 
     compileSdk versions.compileSdk
 
     defaultConfig {
         applicationId "iq.teleiraq.app.android"
-        // Set to API 21: see #405
+        // Google Play automatic protection requires API 24 or higher.
         minSdk versions.minSdk
         targetSdk versions.targetSdk
         multiDexEnabled true
@@ -174,8 +176,8 @@ android {
         splits {
             // Configures multiple APKs based on ABI.
             abi {
-                // Enables building multiple APKs per ABI.
-                enable true
+                // App bundles handle ABI splits themselves and require a single resource output.
+                enable !isBuildingAppBundle
 
                 // By default all ABIs are included, so use reset() and include to specify that we only
                 // want APKs for armeabi-v7a, x86, arm64-v8a and x86_64.

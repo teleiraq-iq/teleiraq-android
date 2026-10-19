@@ -7,9 +7,15 @@
     <string name="matrix_org_server_url" translatable="false">https://im.teleiraq.com</string>
 
     <!-- Rageshake configuration -->
-    <string name="bug_report_url" translatable="false">https://rageshakes.element.io/api/submit</string>
-    <string name="bug_report_app_name" translatable="false">riot-android</string>
-    <string name="bug_report_auto_uisi_app_name" translatable="false">element-auto-uisi</string>
+    <!--
+        Bug reporting is disabled entirely via Config.ENABLE_BUG_REPORT, because this fork has no
+        rageshake server of its own. These are deliberately left empty rather than pointing at
+        Element's server: uploading TeleIraq users' logs, screenshots and crash traces to a third
+        party is not acceptable. Fill them in with a TeleIraq endpoint before re-enabling the flag.
+     -->
+    <string name="bug_report_url" translatable="false"></string>
+    <string name="bug_report_app_name" translatable="false"></string>
+    <string name="bug_report_auto_uisi_app_name" translatable="false"></string>
 
     <!--
         Pusher config for the application
@@ -34,14 +40,12 @@
     </string-array>
 
     <!-- Permalink config -->
-    <string-array name="permalink_supported_hosts" translatable="false">
-        <!-- Regular Element Web instance -->
-        <item>app.element.io</item>
-        <!-- Other known instances of Element Web -->
-        <item>develop.element.io</item>
-        <item>staging.element.io</item>
-        <!-- Previous Web instance, kept for compatibility reason -->
-        <item>riot.im</item>
-    </string-array>
+    <!--
+        There is no TeleIraq web client, so no web host's links need to be intercepted. Element's
+        own hosts were removed: they are not this deployment, and claiming them made the app offer
+        itself as a handler for element.io links. matrix.to links and the element: scheme are still
+        handled, see the PermalinkHandlerActivity alias in the manifest.
+     -->
+    <string-array name="permalink_supported_hosts" translatable="false" />
 
 </resources>

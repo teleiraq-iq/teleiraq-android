@@ -47,7 +47,9 @@ internal object ScanEncryptorUtils {
             // Note: fromBase64 can throw Exception
             val pkEncryption = PkEncryption.fromBase64(key = publicServerKey)
             val pkMessage = pkEncryption.use {
-                pkEncryption.encrypt(DownloadBody(encryptedInfo).toCanonicalJson())
+                requireNotNull(pkEncryption.encrypt(DownloadBody(encryptedInfo).toCanonicalJson())) {
+                    "Failed to encrypt the content scanner download request"
+                }
             }
             DownloadBody(
                     encryptedBody = EncryptedBody(

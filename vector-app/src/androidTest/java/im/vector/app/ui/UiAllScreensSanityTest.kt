@@ -16,11 +16,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
 import im.vector.app.espresso.tools.ScreenshotFailureRule
 import im.vector.app.features.MainActivity
-import im.vector.app.getString
 import im.vector.app.ui.robot.ElementRobot
 import im.vector.app.ui.robot.settings.labs.LabFeaturesPreferences
-import im.vector.app.ui.robot.withDeveloperMode
-import im.vector.lib.strings.CommonStrings
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
@@ -73,7 +70,6 @@ class UiAllScreensSanityTest {
             voiceAndVideo()
             securityAndPrivacy { crawl() }
             labs()
-            advancedSettings { crawl() }
             helpAndAbout { crawl() }
             legals { crawl() }
         }
@@ -135,21 +131,6 @@ class UiAllScreensSanityTest {
 
         elementRobot.roomList {
             crawlTabs()
-        }
-
-        elementRobot.withDeveloperMode {
-            settings {
-                advancedSettings { crawlDeveloperOptions() }
-            }
-            roomList {
-                openRoom(getString(CommonStrings.room_displayname_empty_room)) {
-                    val message = "Test view source"
-                    postMessage(message)
-                    openMessageMenu(message) {
-                        viewSource()
-                    }
-                }
-            }
         }
 
         elementRobot.roomList {

@@ -33,7 +33,6 @@ import com.airbnb.mvrx.Mavericks
 import com.facebook.stetho.Stetho
 import com.gabrielittner.threetenbp.LazyThreeTen
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
-import com.mapbox.mapboxsdk.Mapbox
 import com.vanniktech.emoji.EmojiManager
 import com.vanniktech.emoji.google.GoogleEmojiProvider
 import dagger.hilt.android.HiltAndroidApp
@@ -62,6 +61,7 @@ import im.vector.app.features.themes.ThemeUtils
 import im.vector.app.features.version.VersionProvider
 import iq.teleiraq.app.android.R
 import org.jitsi.meet.sdk.log.JitsiMeetDefaultLogHandler
+import org.maplibre.android.MapLibre
 import org.matrix.android.sdk.api.Matrix
 import org.matrix.android.sdk.api.auth.AuthenticationService
 import timber.log.Timber
@@ -222,8 +222,8 @@ class VectorApplication :
         )
         EmojiManager.install(GoogleEmojiProvider())
 
-        // Initialize Mapbox before inflating mapViews
-        Mapbox.getInstance(this)
+        // Initialize MapLibre before inflating mapViews
+        MapLibre.getInstance(this)
 
         initMemoryLeakAnalysis()
     }

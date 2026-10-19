@@ -49,6 +49,8 @@ class ProcessInfo @Inject constructor() {
     }
 }
 
+// Thread.threadId() is unavailable on older Android versions.
+@Suppress("DEPRECATION")
 private fun Thread.getInfo() = buildString {
     append("Thread '$name':")
     append(" id: $id")

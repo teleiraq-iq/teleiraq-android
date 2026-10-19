@@ -40,7 +40,7 @@ class VectorLocale @Inject constructor(
         private const val ISO_15924_LATN = "Latn"
     }
 
-    private val defaultLocale = Locale("en", "US")
+    private val defaultLocale = Locale.US
 
     /**
      * The cache of supported application languages.
@@ -56,6 +56,8 @@ class VectorLocale @Inject constructor(
     /**
      * Init this singleton.
      */
+    // Preserve support for legacy locale variants stored in preferences.
+    @Suppress("DEPRECATION")
     fun init() {
         if (preferences.contains(APPLICATION_LOCALE_LANGUAGE_KEY)) {
             applicationLocale = Locale(

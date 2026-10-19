@@ -1,67 +1,45 @@
-[![Latest build](https://github.com/element-hq/element-android/actions/workflows/build.yml/badge.svg?query=branch%3Adevelop)](https://github.com/element-hq/element-android/actions/workflows/build.yml?query=branch%3Adevelop)
-[![Weblate](https://translate.element.io/widgets/element-android/-/svg-badge.svg)](https://translate.element.io/engage/element-android/?utm_source=widget)
-[![Element Android Matrix room #element-android:matrix.org](https://img.shields.io/matrix/element-android:matrix.org.svg?label=%23element-android:matrix.org&logo=matrix&server_fqdn=matrix.org)](https://matrix.to/#/#element-android:matrix.org)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=element-android&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=element-android)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=element-android&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=element-android)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=element-android&metric=bugs)](https://sonarcloud.io/summary/new_code?id=element-android)
+# TELEIRAQ for Android
 
-# Element Android
+TELEIRAQ is a messaging app for Android built on the Matrix protocol. It lets you stay in touch through direct messages, group conversations, and voice and video calls, with support for end-to-end encryption in encrypted rooms.
 
-Element Classic Android is a previous-generation [Matrix](https://matrix.org/) client provided by [Element](https://element.io/). The app can be run on every Android devices with Android OS Lollipop and more (API 21). This client is still supported and receives security updates but no new features or usability enhancements are made. It is recommended to use [Element X](https://github.com/element-hq/element-x-android) that is the next-generation mobile app.
+The app connects to the TELEIRAQ homeserver at `https://im.teleiraq.com` and is based on Element Classic Android.
 
-[<img src="resources/img/google-play-badge.png" alt="Get it on Google Play" height="60">](https://play.google.com/store/apps/details?id=im.vector.app)
-[<img src="resources/img/f-droid-badge.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/app/im.vector.app)
+## Features
 
-Build of develop branch: [![GitHub Action](https://github.com/element-hq/element-android/actions/workflows/build.yml/badge.svg?query=branch%3Adevelop)](https://github.com/element-hq/element-android/actions/workflows/build.yml?query=branch%3Adevelop) Nightly test status: [![allScreensTest](https://github.com/element-hq/element-android/actions/workflows/nightly.yml/badge.svg)](https://github.com/element-hq/element-android/actions/workflows/nightly.yml)
+- Direct messages and group chat rooms.
+- End-to-end encrypted conversations in rooms where encryption is enabled, with device verification and encryption key backup support.
+- Voice and video calling, subject to server support and configuration.
+- Sharing photos, videos, files, and voice messages.
+- Message replies, reactions, and threaded conversations.
+- Location sharing, including live location.
+- Notifications to keep up with new messages.
 
+## TELEIRAQ configuration
 
-# New Android SDK
+This fork uses TELEIRAQ branding and the Android application ID `iq.teleiraq.app.android`. It is configured to use the TELEIRAQ homeserver and push notification gateway.
 
-Element is based on a new Android SDK fully written in Kotlin (like Element). In order to make the early development as fast as possible, Element and the new SDK currently share the same git repository.
+Analytics and the built-in bug reporting feature are disabled in the current configuration. Location sharing and support for external UnifiedPush distributors are enabled. Notification delivery depends on the build variant and the device's notification settings.
 
-At each Element release, the SDK module is copied to a dedicated repository: https://github.com/matrix-org/matrix-android-sdk2. That way, third party apps can add a regular gradle dependency to use it. So more details on how to do that here: https://github.com/matrix-org/matrix-android-sdk2.
+## Development
 
-# Roadmap
+This repository contains the Android app and its Matrix Android SDK modules. The app is primarily written in Kotlin and uses Gradle for builds.
 
-The version 1.0.0 of Element still misses some features which was previously included in Riot-Android.
-The team will work to add them on a regular basis.
+See the [contribution and build guide](./CONTRIBUTING.md) for development setup and the [developer onboarding guide](./docs/_developer_onboarding.md) for the project architecture. These guides were inherited from upstream and may still contain Element-specific references.
 
-# Releases to app stores
+The main app module is `vector-app`. TELEIRAQ's app identity is configured in [vector-app/build.gradle](./vector-app/build.gradle), and server settings and feature flags are maintained in [vector-config](./vector-config).
 
-There is some delay between when a release is created and when it appears in the app stores (Google Play Store and F-Droid). Here are some of the reasons:
+## Upstream attribution and license
 
-* Not all versioned releases that appear on GitHub are considered stable. Each release is first considered beta: this continues for at least two days. If the release is stable (no serious issues or crashes are reported), then it is released as a production release in Google Play Store, and a request is sent to F-Droid too.
-* Each release on the Google Play Store undergoes review by Google before it comes out. This can take an unpredictable amount of time. In some cases it has taken several weeks.
-* In order for F-Droid to guarantee that the app you receive exactly matches the public source code, they build releases themselves. When a release is considered stable, Element staff inform the F-Droid maintainers and it is added to the build queue. Depending on the load on F-Droid's infrastructure, it can take some time for releases to be built. This always takes at least 24 hours, and can take several days.
-
-If you would like to receive releases more quickly (bearing in mind that they may not be stable) you have a number of options:
-
-1. [Sign up to receive beta releases](https://play.google.com/apps/testing/im.vector.app) via the Google Play Store.
-2. Install a [release APK](https://github.com/element-hq/element-android/releases) directly - download the relevant .apk file and allow installing from untrusted sources in your device settings.  Note: these releases are the Google Play version, which depend on some Google services.  If you prefer to avoid that, try the latest dev builds, and choose the F-Droid version.
-3. If you're really brave, install the [very latest dev build](https://github.com/element-hq/element-android/actions/workflows/build.yml?query=branch%3Adevelop) - pick a build, then click on `Summary` to download the APKs from there: `vector-Fdroid-debug` and `vector-Gplay-debug` contains the APK for the desired store. Each file contains 5 APKs. 4 APKs for every supported specific architecture of device. In doubt you can install the `universal` APK.
-
-## Contributing
-
-Please refer to [CONTRIBUTING.md](./CONTRIBUTING.md) if you want to contribute on Matrix Android projects!
-
-Come chat with the community in the dedicated Matrix [room](https://matrix.to/#/#element-android:matrix.org).
-
-Also [this documentation](./docs/_developer_onboarding.md) can hopefully help developers to start working on the project.
-
-## Triaging issues
-
-Issues are triaged by community members and the Android App Team, following the [triage process](https://github.com/element-hq/element-meta/wiki/Triage-process).
-
-We use [issue labels](https://github.com/element-hq/element-meta/wiki/Issue-labelling) to sort all incoming issues.
-
-## Copyright and License
+TELEIRAQ is a modified version of [Element Android](https://github.com/element-hq/element-android), developed by New Vector Ltd (Element). This repository retains the upstream copyright and license notices. TELEIRAQ is an independent fork and is not an official Element release.
 
 Copyright (c) 2018 - 2025 New Vector Ltd
 
-This software is dual licensed by New Vector Ltd (Element). It can be used either:
+This fork is distributed under the GNU Affero General Public License, version 3 or (at your option) any later version (`AGPL-3.0-or-later`). See [LICENSE](./LICENSE) for the full license text. Existing file-level copyright and license notices also apply to their respective files.
 
-(1) for free under the terms of the GNU Affero General Public License (as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version); OR
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-(2) under the terms of a paid-for Element Commercial License agreement between you and Element (the terms of which may vary depending on what you and Element have agreed to).
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 
-Unless required by applicable law or agreed to in writing, software distributed under the Licenses is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the Licenses for the specific language governing permissions and limitations under the Licenses.
+You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+The upstream Element project also offers its code under a separate [Element Commercial License](./LICENSE-COMMERCIAL). That option does not automatically cover modifications made in this fork.

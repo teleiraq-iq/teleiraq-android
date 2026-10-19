@@ -29,6 +29,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import im.vector.app.R
 import im.vector.app.SpaceStateHandler
+import im.vector.app.config.Config
 import im.vector.app.core.extensions.hideKeyboard
 import im.vector.app.core.extensions.registerStartForActivityResult
 import im.vector.app.core.extensions.replaceFragment
@@ -586,12 +587,17 @@ class HomeActivity :
         if (vectorUncaughtExceptionHandler.didAppCrash()) {
             vectorUncaughtExceptionHandler.clearAppCrashStatus()
 
-            MaterialAlertDialogBuilder(this)
-                    .setMessage(CommonStrings.send_bug_report_app_crashed)
-                    .setCancelable(false)
-                    .setPositiveButton(CommonStrings.yes) { _, _ -> bugReporter.openBugReportScreen(this) }
-                    .setNegativeButton(CommonStrings.no) { _, _ -> bugReporter.deleteCrashFile() }
-                    .show()
+            if (Config.ENABLE_BUG_REPORT) {
+                MaterialAlertDialogBuilder(this)
+                        .setMessage(CommonStrings.send_bug_report_app_crashed)
+                        .setCancelable(false)
+                        .setPositiveButton(CommonStrings.yes) { _, _ -> bugReporter.openBugReportScreen(this) }
+                        .setNegativeButton(CommonStrings.no) { _, _ -> bugReporter.deleteCrashFile() }
+                        .show()
+            } else {
+                // Nowhere to send it, so do not ask the user about it.
+                bugReporter.deleteCrashFile()
+            }
         }
 
         // Force remote backup state update to update the banner if needed
@@ -614,6 +620,8 @@ class HomeActivity :
     override fun getMenuRes() = if (vectorPreferences.isNewAppLayoutEnabled()) R.menu.menu_new_home else R.menu.menu_home
 
     override fun handlePrepareMenu(menu: Menu) {
+        menu.findItem(R.id.menu_home_suggestion).isVisible = Config.ENABLE_BUG_REPORT
+        menu.findItem(R.id.menu_home_report_bug).isVisible = Config.ENABLE_BUG_REPORT
         menu.findItem(R.id.menu_home_init_sync_legacy).isVisible = vectorPreferences.developerMode()
         menu.findItem(R.id.menu_home_init_sync_optimized).isVisible = vectorPreferences.developerMode()
     }

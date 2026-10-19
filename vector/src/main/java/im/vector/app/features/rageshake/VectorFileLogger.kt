@@ -133,6 +133,8 @@ class VectorFileLogger @Inject constructor(
         logger.info(errors.toString())
     }
 
+    // Thread.threadId() is unavailable on older Android versions.
+    @Suppress("DEPRECATION")
     private fun logToFile(level: String, tag: String, content: String) {
         val b = StringBuilder()
         b.append(Thread.currentThread().id)

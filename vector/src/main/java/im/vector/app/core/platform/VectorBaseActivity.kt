@@ -46,6 +46,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.EntryPointAccessors
 import im.vector.app.R
+import im.vector.app.config.Config
 import im.vector.app.core.debug.DebugReceiver
 import im.vector.app.core.di.ActiveSessionHolder
 import im.vector.app.core.di.ActivityEntryPoint
@@ -408,7 +409,7 @@ abstract class VectorBaseActivity<VB : ViewBinding> : AppCompatActivity(), Maver
         }
         configurationViewModel.onActivityResumed()
 
-        if (this !is BugReportActivity && vectorPreferences.useRageshake()) {
+        if (Config.ENABLE_BUG_REPORT && this !is BugReportActivity && vectorPreferences.useRageshake()) {
             rageShake.start()
         }
         debugReceiver.register(this)

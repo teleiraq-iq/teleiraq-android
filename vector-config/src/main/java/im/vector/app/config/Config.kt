@@ -60,6 +60,20 @@ object Config {
      */
     const val HANDLE_CALL_ASSERTED_IDENTITY_EVENTS = false
 
+    /**
+     * Whether bug reports (a.k.a. rageshakes) can be sent at all.
+     *
+     * This fork has no rageshake server of its own, and the upstream endpoint belongs to Element,
+     * so leaving it enabled would upload TeleIraq users' logs, screenshots and crash traces to a
+     * third party. While this is false, no report is ever created or uploaded and every entry point
+     * to the bug reporter is hidden: shake-to-report, the "Report bug" / "Make a suggestion" menu
+     * items, the crash-report prompt on the next launch, the beta feedback banners, the
+     * notification troubleshoot report button, and automatic UISI reporting.
+     *
+     * To re-enable, set this to true *and* point `bug_report_url` at your own rageshake server.
+     */
+    const val ENABLE_BUG_REPORT = false
+
     const val LOW_PRIVACY_LOG_ENABLE = false
     const val ENABLE_STRICT_MODE_LOGS = false
 
@@ -91,9 +105,5 @@ object Config {
      * Fork maintainers can use this to inform users about their new application if any. Note that you probably also want
      * to replace the resource `replacement_app_icon` too.
      */
-    val sunsetConfig: SunsetConfig = SunsetConfig.Enabled(
-            learnMoreLink = "https://element.io/app-for-productivity",
-            replacementApplicationName = "Element X",
-            replacementApplicationId = "io.element.android.x",
-    )
+    val sunsetConfig: SunsetConfig = SunsetConfig.Disabled
 }

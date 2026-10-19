@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import com.squareup.moshi.Types
 import im.vector.app.BuildConfig
+import im.vector.app.config.Config
 import im.vector.app.config.R
 import im.vector.app.core.di.ActiveSessionHolder
 import im.vector.app.core.extensions.getAllChildFragments
@@ -177,6 +178,12 @@ class BugReporter @Inject constructor(
             customFields: Map<String, String>? = null,
             listener: IMXBugReportListener?
     ) {
+        if (!Config.ENABLE_BUG_REPORT) {
+            Timber.w("## sendBugReport() : bug reporting is disabled, dropping the report")
+            listener?.onUploadFailed(null)
+            return
+        }
+
         // enumerate files to delete
         val mBugReportFiles: MutableList<File> = ArrayList()
 
@@ -489,6 +496,10 @@ class BugReporter @Inject constructor(
      * Send a bug report either with email or with Vector.
      */
     fun openBugReportScreen(activity: FragmentActivity, reportType: ReportType = ReportType.BUG_REPORT) {
+        if (!Config.ENABLE_BUG_REPORT) {
+            Timber.w("## openBugReportScreen() : bug reporting is disabled")
+            return
+        }
         screenshot = takeScreenshot(activity)
         logDbInfo()
         logProcessInfo()
