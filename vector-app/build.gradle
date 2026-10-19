@@ -1,5 +1,15 @@
 import com.android.build.OutputFile
 
+// Keep signing credentials outside tracked Gradle configuration.
+def localSigningProperties = new Properties()
+def localSigningFile = rootProject.file('signing.local.properties')
+if (localSigningFile.exists()) {
+    localSigningFile.withInputStream { localSigningProperties.load(it) }
+}
+def signingValue = { String name ->
+    project.findProperty(name) ?: localSigningProperties.getProperty(name)
+}
+
 def isBuildingAppBundle = gradle.startParameter.taskNames.any { it.tokenize(':').last().startsWith('bundle') }
 
 apply plugin: 'com.android.application'
@@ -229,16 +239,17 @@ android {
             storePassword 'android'
         }
         nightly {
-            keyAlias System.env.ELEMENT_ANDROID_NIGHTLY_KEYID ?: project.property("signing.element.nightly.keyId")
-            keyPassword System.env.ELEMENT_ANDROID_NIGHTLY_KEYPASSWORD ?: project.property("signing.element.nightly.keyPassword")
+            keyAlias System.env.ELEMENT_ANDROID_NIGHTLY_KEYID ?: signingValue("signing.element.nightly.keyId")
+            keyPassword System.env.ELEMENT_ANDROID_NIGHTLY_KEYPASSWORD ?: signingValue("signing.element.nightly.keyPassword")
             storeFile file('./signature/nightly.keystore')
-            storePassword System.env.ELEMENT_ANDROID_NIGHTLY_STOREPASSWORD ?: project.property("signing.element.nightly.storePassword")
+            storePassword System.env.ELEMENT_ANDROID_NIGHTLY_STOREPASSWORD ?: signingValue("signing.element.nightly.storePassword")
         }
         release {
-            keyAlias project.property("signing.element.keyId")
-            keyPassword project.property("signing.element.keyPassword")
-            storeFile file(project.property("signing.element.storePath"))
-            storePassword project.property("signing.element.storePassword")
+            keyAlias signingValue("signing.element.keyId")
+            keyPassword signingValue("signing.element.keyPassword")
+            def releaseStorePath = signingValue("signing.element.storePath")
+            storeFile releaseStorePath ? file(releaseStorePath) : null
+            storePassword signingValue("signing.element.storePassword")
         }
     }
 

@@ -37,3 +37,14 @@ library/rustCrypto/matrix-rust-sdk-crypto.aar
 *.apk
 *.aab
 /vector-app/gplay/release/
+
+# Private signing material stays local, never in Git.
+/signing.local.properties
+/teleiraq.keystore
+/vector-app/keystore.properties
+/vector-app/signature/nightly.keystore
+*.keystore
+!/vector-app/signature/debug.keystore
+*.jks
+*.p12
+*.pfx
